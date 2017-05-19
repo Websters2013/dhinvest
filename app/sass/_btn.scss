@@ -1,0 +1,40 @@
+.btn {
+  @include inline-flex();
+  @include justify-content(center);
+  @include align-items(center);
+  @include flex-direction();
+  background: transparent;
+  padding: 0 10px;
+  height: 58px;
+  @include main-font1();
+  font-size: 18px;
+  line-height: 18px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  border: 2px solid #fff;
+  -webkit-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
+  text-align: center;
+  text-transform: uppercase;
+
+  span {
+    width: 100%;
+    text-align: center;
+  }
+  &:hover {
+    background: #fff;
+    color: #2d4475;
+  }
+  &:active {
+    background: #fff;
+    color: #2d4475;
+  }
+}
+
+@media (min-width: $desktop) {
+
+  .btn {
+    padding: 0 45px;
+  }
+
+}

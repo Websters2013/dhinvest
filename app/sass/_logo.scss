@@ -1,0 +1,32 @@
+.logo {
+  @include absoluteCenter();
+  z-index: 5;
+  width: 112px;
+  height: 49px;
+
+  > img,
+  > svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+}
+.logo-mobile {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+}
+
+@media (min-width: $desktop) {
+
+  .logo {
+    @include absoluteCenterY();
+    left: 15px;
+    z-index: 7;
+    width: 112px;
+    height: 49px;
+  }
+
+}
+
