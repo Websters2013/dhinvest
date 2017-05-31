@@ -1,0 +1,20 @@
+.contact-us {
+  width: 300px;
+  padding: 20px 20px;
+  background: #fff;
+
+  p {
+    margin: 0 0 20px;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .contact-us {
+    width: 556px;
+    padding: 50px 46px 40px;
+  }
+
+}
+

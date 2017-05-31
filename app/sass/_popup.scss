@@ -1,5 +1,4 @@
 .popup {
-  display: block;
   opacity: 0;
   overflow-y: scroll;
   position: fixed;
@@ -8,10 +7,14 @@
   width: 0;
   height: 0;
   z-index: 10000;
-  padding-top: 40px;
+  padding: 100px 0 40px;
   background: $popup-back;
   text-align: center;
   transition: opacity 500ms ease-in-out;
+  font-size: 18px;
+  line-height: 24px;
+  color: #3b5998;
+  @include main-font1();
 
   &_opened {
     opacity: 1;
@@ -26,36 +29,41 @@
   }
 
   &__wrap {
+    @include flexbox();
+    @include flex-direction();
+    @include justify-content(center);
+    @include align-items(center);
     position: relative;
     z-index: 2;
-    width: 527px;
-    margin: 0 auto;
-    padding-bottom: 40px;
+    min-height: 100%;
   }
 
   &__content {
     display: none;
     text-align: left;
-    padding: 20px 0;
   }
 
   &__close {
-    position: absolute;
-    top: 17px;
-    width: 15px;
-    height: 15px;
-    right: 18px;
+    @include absoluteCenterX();
+    top: -70px;
+    width: 46px;
+    height: 46px;
+    border: 3px solid #fff;
+    border-radius: 100%;
     text-indent: -5000px;
     cursor: pointer;
+    -webkit-transition: opacity 0.3s, color 0.3s;
+    transition: opacity 0.3s, color 0.3s;
 
     &:after,
     &:before {
       position: absolute;
       top: 50%;
-      left: 0;
-      right: 0;
+      left: 9px;
+      right: 9px;
+      margin-top: -3px;
       height: 3px;
-      background: $popup-close-back;
+      background: #fff;
       transform-origin: center;
       content: '';
     }

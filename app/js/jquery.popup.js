@@ -25,14 +25,7 @@
             _timer = setTimeout( function(){}, 1 );
 
         //private methods
-        var _centerWrap = function(){
-                if ( _window.height() - ( _popupPadding * 2 ) - _wrap.height() > 0 ) {
-                    _wrap.css( { top: ( ( _window.height() - ( _popupPadding * 2 ) ) - _wrap.height() ) / 2 } );
-                } else {
-                    _wrap.css( { top: 0 } );
-                }
-            },
-            _getScrollWidth = function (){
+        var _getScrollWidth = function (){
                 var scrollDiv = document.createElement( 'div'),
                     scrollBarWidth;
 
@@ -75,7 +68,7 @@
             _onEvents = function(){
                 _window.on( {
                     resize: function(){
-                        _centerWrap();
+                        //_centerWrap();
                     }
                 } );
                 _btnShow.on( {
@@ -84,7 +77,7 @@
                         return false;
                     }
                 } );
-                _wrap.on( {
+                _contents.on( {
                     click: function( e ){
                         e.stopPropagation();
                     }
@@ -110,7 +103,7 @@
                     paddingRight: _getScrollWidth()
                 } );
                 _obj.addClass( 'popup_opened' );
-                _centerWrap();
+                //_centerWrap();
 
             },
             _setPopupContent = function( className ){

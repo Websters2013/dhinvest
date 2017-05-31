@@ -1,0 +1,75 @@
+.about-us {
+  padding: 50px 0;
+  text-align: center;
+
+  .site__title {
+    margin: 0 0 19px;
+  }
+  p {
+    margin: 0 0 22px;
+
+    em {
+      color: #ff2b2b;
+      font-style: normal;
+    }
+
+  }
+  address {
+    margin: 0 0 28px;
+    font-size: 22px;
+    font-style: normal;
+
+    div {
+      margin: 0 0 16px;
+    }
+    a {
+      color: #3b5998;
+    }
+
+  }
+
+}
+.about-us__layout {
+  position: relative;
+  max-width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto;
+
+  >div {
+    margin: 0 0 50px;
+  }
+
+}
+.about-us__caption {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .about-us {
+    text-align: left;
+    padding-bottom: 112px;
+  }
+  .about-us__layout {
+    @include flexbox();
+    @include flex-direction();
+    @include justify-content(space-between);
+    @include align-items();
+
+    >div {
+      width: 31.5%;
+      margin: 0;
+      padding-top: 75px;
+
+      &:first-child {
+        width: 41.7%;
+        padding-top: 0;
+      }
+
+    }
+
+  }
+
+}
+

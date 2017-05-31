@@ -9,13 +9,115 @@
 
     <title>Title</title>
 
+    <link rel="stylesheet" href="css/perfect-scrollbar.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <style>
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 10;
+            background: #304879;
+        }
+        .preloader > .logo {
+            position: absolute;
+            left: 50%;
+            top: 40% !important;
+            max-width: 354px;
+            z-index: 3;
+            -webkit-transition: opacity 500ms ease-in-out;
+            transition: opacity 500ms ease-in-out;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .preloader_loaded > .logo,
+        .preloader_loaded > div{
+            opacity: 0;
+        }
+        .preloader__points {
+            overflow: hidden;
+            position: absolute;
+            top: 65%;
+            left: 0;
+            width: 100%;
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            text-align: center;
+        }
+
+        .preloader__points span {
+            display: inline-block;
+            vertical-align: top;
+            height: 20px;
+            margin: 60px 5px;
+            width: 20px;
+            background: #fff;
+            -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+            animation: rotateplane 1.2s infinite ease-in-out;
+        }
+
+        .preloader__points span:nth-of-type(1) {
+            -webkit-animation-delay: 0s;
+        }
+        .preloader__points span:nth-of-type(2) {
+            -webkit-animation-delay: 0.2s;
+        }
+        .preloader__points span:nth-of-type(3) {
+            -webkit-animation-delay: 0.4s;
+        }
+        .preloader__points span:nth-of-type(4) {
+            -webkit-animation-delay: 0.6s;
+        }
+        .preloader__points span:nth-of-type(5) {
+            -webkit-animation-delay: 0.8s;
+        }
+
+        @-webkit-keyframes rotateplane {
+            0% { -webkit-transform: perspective(120px) }
+            50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+            100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+        }
+
+        @keyframes rotateplane {
+            0% {
+                transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+            } 50% {
+                  transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                  -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+              } 100% {
+                    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                }
+        }
+    </style>
 
 </head>
 <body>
 
     <!-- site -->
     <div class="site">
+
+        <!-- preloader -->
+        <div class="preloader">
+            <div class='preloader__points'>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="logo" >
+                <img src="img/logo.png" width="112" height="49" alt="">
+            </div>
+        </div>
+        <!-- /preloader -->
 
         <!-- site__header -->
         <header class="site__header">
@@ -38,9 +140,9 @@
                 <!-- site__menu -->
                 <div class="site__menu">
                     <nav>
-                        <a href="#" data-hover="Notre méthode">Notre méthode</a>
-                        <a href="#" data-hover="Pourquoi DHI">Pourquoi DHI</a>
-                        <a href="#" data-hover="A propos">A propos</a>
+                        <a href="#" data-href="our-methods" data-hover="Notre méthode">Notre méthode</a>
+                        <a href="#" data-href="why-us" data-hover="Pourquoi DHI">Pourquoi DHI</a>
+                        <a href="#" data-href="about-us" data-hover="A propos">A propos</a>
                     </nav>
                 </div>
                 <!-- /site__menu -->
@@ -62,17 +164,17 @@
 
                     <!-- hero__content -->
                     <div class="hero__content">
-                        <h2 class="site__title">Votre société d'investissement immobilier à Bruxelles</h2>
-                        <p>Nous achetons tous types de biens sans commission, ni tracas administratifs</p>
+                        <h2 class="site__title site__title_white">Votre société d'investissement immobilier à Bruxelles</h2>
+                        <p>Nous achetons tous types de biens sans commission, ni tracas administratifs</p>
                         <a href="#" class="btn">Découvrez notre méthode</a>
                     </div>
                     <!-- /hero__content -->
 
                     <!-- hero__pics -->
                     <div class="hero__pics">
-                        <img src="pic/hero-pic1.jpg" width="308" height="483" alt="">
-                        <img src="pic/hero-pic2.jpg" width="308" height="483" alt="">
-                        <img src="pic/hero-pic3.jpg" width="308" height="483" alt="">
+                        <img src="pic/hero-pic1.jpg" data-scale="1" data-translate="20.3" width="308" height="483" alt="">
+                        <img src="pic/hero-pic2.jpg" data-scale="1" data-translate="30.3" width="308" height="483" alt="">
+                        <img src="pic/hero-pic3.jpg" data-scale="1" data-translate="40.3" width="308" height="483" alt="">
                     </div>
                     <!-- /hero__pics -->
 
@@ -83,7 +185,7 @@
             <!-- /hero -->
 
             <!-- our-methods -->
-            <div class="our-methods">
+            <div class="our-methods" data-scroll="scroll">
 
                 <!-- our-methods__layout -->
                 <div class="our-methods__layout">
@@ -93,16 +195,211 @@
                     <!-- our-methods__steps -->
                     <div class="our-methods__steps">
 
-                        <div></div>
+                        <div>
+
+                            <!-- our-methods__steps-number -->
+                            <div class="our-methods__steps-number">1</div>
+                            <!-- /our-methods__steps-number -->
+
+                            <!-- our-methods__steps-content -->
+                            <div class="our-methods__steps-content">
+                                <h2 class="our-methods__steps-title">Prise de contact</h2>
+                                <p>Notre équipe prend contact avec vous dans les 24h pour analyser votre bien</p>
+                            </div>
+                            <!-- /our-methods__steps-content -->
+
+                        </div>
+                        <div>
+
+                            <!-- our-methods__steps-number -->
+                            <div class="our-methods__steps-number">2</div>
+                            <!-- /our-methods__steps-number -->
+
+                            <!-- our-methods__steps-content -->
+                            <div class="our-methods__steps-content">
+                                <h2 class="our-methods__steps-title">Offre d’achat</h2>
+                                <p>Vous recevez une offre d'achat dans les 48h</p>
+                            </div>
+                            <!-- /our-methods__steps-content -->
+
+                        </div>
+                        <div>
+
+                            <!-- our-methods__steps-number -->
+                            <div class="our-methods__steps-number">3</div>
+                            <!-- /our-methods__steps-number -->
+
+                            <!-- our-methods__steps-content -->
+                            <div class="our-methods__steps-content">
+                                <h2 class="our-methods__steps-title">Signature</h2>
+                                <p>La signature du contrat d’achat privé entre vous et Dream House Invest</p>
+                            </div>
+                            <!-- /our-methods__steps-content -->
+
+                        </div>
+                        <div>
+
+                            <!-- our-methods__steps-number -->
+                            <div class="our-methods__steps-number">4</div>
+                            <!-- /our-methods__steps-number -->
+
+                            <!-- our-methods__steps-content -->
+                            <div class="our-methods__steps-content">
+                                <h2 class="our-methods__steps-title">Conclusion</h2>
+                                <p>Cette étape arrive quelques mois plus tard avec la signature de l’acte authentique de vente.</p>
+                            </div>
+                            <!-- /our-methods__steps-content -->
+
+                        </div>
 
                     </div>
                     <!-- /our-methods__steps -->
+
+                    <!-- our-methods__content -->
+                    <div class="our-methods__content">
+                        <div>
+
+                            <a href="#" class="btn btn_2 popup__open" data-popup="contact-us">Soumettez votre projet à notre équipe</a>
+
+                        </div>
+                        <div>
+
+                            <p>Dream House Invest se charge de vous aider et de vous accompagner dans toutes ces procédures pour une vente immobilière sûre, rapide et sécurisée.</p>
+
+                        </div>
+                    </div>
+                    <!-- /our-methods__content -->
 
                 </div>
                 <!-- /our-methods__layout -->
 
             </div>
             <!-- /our-methods -->
+
+            <!-- why-us -->
+            <div class="why-us" data-scroll="scroll">
+
+                <!-- why-us__layout -->
+                <div class="why-us__layout">
+
+                    <!-- why-us__content -->
+                    <div class="why-us__content">
+                        <div>
+
+                            <h2 class="site__title site__title_white">Pour quels raisons
+                                devez-vous faire appel
+                                à Dream House Invest?</h2>
+
+                            <!-- why-us__list -->
+                            <ul class="why-us__list">
+                                <li>Vendre votre bien en urgence</li>
+                                <li>Vous avez besoin de liquidité rapidement</li>
+                                <li>Héritage, divorce et autres raisons familiales</li>
+                                <li>Pas envie de perdre du temps dans la gestion quotidienne</li>
+                                <li>Vous souhaitez prendre une retraite anticipée</li>
+                            </ul>
+                            <!-- /why-us__list -->
+
+                        </div>
+                        <div>
+
+                            <!-- why-us__offer -->
+                            <div class="why-us__offer">
+                                <p>Nous offrons une solution alternative aux agences immobilières classiques</p>
+                                <a href="#" class="btn btn_2 popup__open" data-popup="contact-us">Vendre votre bien</a>
+                            </div>
+                            <!-- /why-us__offer -->
+
+                        </div>
+                    </div>
+                    <!-- /why-us__content -->
+
+                </div>
+                <!-- /why-us__layout -->
+
+            </div>
+            <!-- /why-us -->
+
+            <!-- property-type -->
+            <div class="property-type">
+
+                <!-- property-type__layout -->
+                <div class="property-type__layout">
+
+                    <h2 class="property-type__title">Nous achetons tous type de biens</h2>
+
+                    <div>
+                        <span class="property-type__pic">
+                            <img src="pic/property-type1.png" width="51" height="47" alt="">
+                        </span>
+                        Maison
+                    </div>
+                    <div>
+                        <span class="property-type__pic">
+                            <img src="pic/property-type2.png" width="58" height="58" alt="">
+                        </span>
+                        Appartement
+                    </div>
+                    <div>
+                        <span class="property-type__pic">
+                            <img src="pic/property-type3.png" width="42" height="52" alt="">
+                        </span>
+                        Immeuble de
+                        rapport
+                    </div>
+                    <div>
+                        <span class="property-type__pic">
+                            <img src="pic/property-type4.png" width="59" height="61" alt="">
+                        </span>
+                        Terrains
+                    </div>
+                    <div>
+                        <span class="property-type__pic">
+                            <img src="pic/property-type5.png" width="77" height="65" alt="">
+                        </span>
+                        Projets
+                        Immobiliers
+                    </div>
+
+                </div>
+                <!-- /property-type__layout -->
+
+            </div>
+            <!-- /property-type -->
+
+            <!-- about-us -->
+            <div class="about-us" data-scroll="scroll">
+
+                <!-- about-us__layout -->
+                <div class="about-us__layout">
+
+                    <div>
+
+                        <h2 class="site__title">A propos de nous</h2>
+
+                        <p class="about-us__caption">Dream House Invest est une société d’investissement immobilier installée à Bruxelles. Notre société est spécialisée dans l’immobilier résidentiel et commercial en Belgique. </p>
+                        <p>L’équipe Dream House Invest est composée, pour chaque département, de personnel qualifié et expérimenté.
+                            Nous mettons notre expérience dans l’investissement immobilier, à votre service. Au moyen d’outils immobiliers personnalisés selon la région, le type de bien,… Dream House Invest achète les biens <em>de manière ferme</em> et <em>sans clause</em>.
+                        </p>
+
+                    </div>
+                    <div>
+
+                        <address>
+                            <div>Avenue d’Itterbeek 53, 1070 Bruxelles</div>
+                            <div><a href="tel:+322/537.60.01">+32 2/537.60.01</a></div>
+                            <div><a href="mailto:info@dreamhouseinvest.com">info@dreamhouseinvest.com</a></div>
+                            <div>Skype: <a href="skype:DHI?chat">DHI</a></div>
+                        </address>
+                        <a href="#" class="btn btn_2 popup__open" data-popup="contact-us">Vous avez des questions ?</a>
+
+                    </div>
+
+                </div>
+                <!-- /about-us__layout -->
+
+            </div>
+            <!-- /about-us -->
 
         </div>
         <!-- /site__content -->
@@ -112,8 +409,8 @@
 
             <!-- site__footer-layout -->
             <div class="site__footer-layout">
-
-
+                <div>© Copyright 2017 Dream House Invest</div>
+                <div class="site__footer-crafted">Website carefully crafted by <a href="https://ergonomic.be/">ergonomic</a> </div>
             </div>
             <!-- /site__footer-layout -->
 
@@ -130,7 +427,59 @@
         <div class="popup__wrap">
 
             <!-- popup__content -->
-            <div class="popup__content popup__text">
+            <div class="popup__content popup__contact-us">
+
+                <a href="#" class="popup__close"></a>
+
+                <!-- contact-us -->
+                <div class="contact-us">
+
+                    <p>Laissez-nous vos coordonnées, notre équipe vous contacte dans les 24 heures</p>
+
+                    <form action="#" class="site__form">
+                        <div class="site__row">
+                            <div class="site__fields">
+                                <input type="text" class="site__input" name="name" id="name" required>
+                                <label class="site__label" for="name">Nom</label>
+                            </div>
+                            <div class="site__fields">
+                                <input type="text" class="site__input" name="surname" id="surname" required>
+                                <label class="site__label" for="surname">Prénom</label>
+                            </div>
+                        </div>
+                        <div class="site__row">
+                            <div class="site__fields">
+                                <input type="email" class="site__input" name="email" id="email" required>
+                                <label class="site__label" for="email">Votre E-mail</label>
+                            </div>
+                            <div class="site__fields">
+                                <input type="tel" class="site__input" name="tel" id="tel" required>
+                                <label class="site__label" for="tel">Numéro de téléphone</label>
+                            </div>
+                        </div>
+                        <div class="site__fields site__fields_select">
+                            <select name="property" id="property">
+                                <option value="0">Quel type de bien souhaiteriez vous vendre?</option>
+                                <option value="1">Property1</option>
+                                <option value="2">Property2</option>
+                                <option value="3">Property3</option>
+                                <option value="4">Property4</option>
+                            </select>
+                        </div>
+                        <div class="site__fields">
+                            <textarea name="message" class="site__input" id="message" cols="30" rows="10" required></textarea>
+                            <label class="site__label" for="message">Message supplémentaire (optionnel)</label>
+                        </div>
+                        <div class="site__send">
+                            <button class="btn btn_3" type="submit">
+                                <img src="img/send.png" width="27" height="27" alt="">
+                                <span>Envoyer</span>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+                <!-- /contact-us -->
 
             </div>
             <!-- /popup__content -->
@@ -143,6 +492,7 @@
 
 
     <script src="js/vendors/jquery-3.0.0.min.js"></script>
+    <script src="js/vendors/perfect-scrollbar.jquery.min.js"></script>
     <script src="js/index.min.js"></script>
 </body>
 </html>

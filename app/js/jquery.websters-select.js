@@ -154,21 +154,18 @@
                 } );
 
                 _popup.append( list );
-                _body.append( _popup );
+                _wrap.append( _popup );
                 _wrap.addClass( 'websters-select_opened' );
 
                 _popup.css( {
                     width: _wrap.outerWidth(),
-                    left: offset.left,
-                    top: offset.top + _wrap.outerHeight()
+                    top: _wrap.outerHeight()
                 } );
 
                 maxHeight = _popup.outerHeight();
                 if( maxHeight > _popup.find( 'li' ).eq( 0 ).outerHeight() * _visible ){
                     _popup.height( _popup.find( 'li' ).eq( 0 ).outerHeight() * _visible );
-                    _scroll = _popup.niceScroll( {
-                        horizrailenabled: false
-                    } );
+                    _scroll = _popup.perfectScrollbar();
                 }
 
                 if( _showType == 1 ){
