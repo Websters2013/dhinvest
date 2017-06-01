@@ -65,7 +65,14 @@
                 _obj[ 0 ].obj = _self;
                 _onEvents();
             },
-            _onEvents = function(){
+            _onEvents = function() {
+                $(document).keyup(function(e) {
+                    if (e.keyCode === 27) {
+
+                        _hide();
+
+                    }
+                });
                 _window.on( {
                     resize: function(){
                         //_centerWrap();

@@ -434,20 +434,24 @@
 
                     var cur = $(item[i]),
                         itemCur = $(item[i]).offset().top - _header.outerHeight(true),
-                        itemHeight = $(item[i]).outerHeight(true);
+                        itemHeight = $(item[i]).outerHeight(true),
+                        curClass = cur.attr('class').split(' '),
+                        curLink = _links.filter("[data-href="+curClass[0]+"]");
 
                     if( scrollTop > itemCur - 20 ) {
-
-                        var curClass = cur.attr('class').split(' '),
-                            curLink = _links.filter("[data-href="+curClass[0]+"]");
 
                         _links.removeClass('active');
                         curLink.addClass('active');
 
                     }
-                    if( scrollTop > ( itemCur + itemHeight ) ){
+                    if( scrollTop > ( itemCur + itemHeight ) ) {
 
                         _links.removeClass('active');
+
+                    }
+                    if( scrollTop < $(item[i]).offset().top ) {
+
+                        curLink.removeClass('active');
 
                     }
                 }
